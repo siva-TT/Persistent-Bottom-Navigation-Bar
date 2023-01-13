@@ -2,7 +2,8 @@ import "package:flutter/material.dart";
 import "package:persistent_bottom_nav_bar/persistent_tab_view.dart";
 
 import "package:persistent_bottom_nav_bar_example_project/main.dart";
-import "package:persistent_bottom_nav_bar_example_project/screens.dart";
+import "package:persistent_bottom_nav_bar_example_project/screens/home.dart";
+import "package:persistent_bottom_nav_bar_example_project/screens/sample.dart";
 
 class CustomWidgetExample extends StatefulWidget {
   const CustomWidgetExample({final Key key, this.menuScreenContext})
@@ -25,7 +26,7 @@ class _CustomWidgetExampleState extends State<CustomWidgetExample> {
   }
 
   List<Widget> _buildScreens() => [
-        MainScreen(
+        HomePage(
           menuScreenContext: widget.menuScreenContext,
           hideStatus: _hideNavBar,
           onScreenHideButtonPressed: () {
@@ -34,7 +35,7 @@ class _CustomWidgetExampleState extends State<CustomWidgetExample> {
             });
           },
         ),
-        MainScreen(
+        SamplePage(
           menuScreenContext: widget.menuScreenContext,
           hideStatus: _hideNavBar,
           onScreenHideButtonPressed: () {
@@ -43,7 +44,7 @@ class _CustomWidgetExampleState extends State<CustomWidgetExample> {
             });
           },
         ),
-        MainScreen(
+        SamplePage(
           menuScreenContext: widget.menuScreenContext,
           hideStatus: _hideNavBar,
           onScreenHideButtonPressed: () {
@@ -52,7 +53,7 @@ class _CustomWidgetExampleState extends State<CustomWidgetExample> {
             });
           },
         ),
-        MainScreen(
+        SamplePage(
           menuScreenContext: widget.menuScreenContext,
           hideStatus: _hideNavBar,
           onScreenHideButtonPressed: () {
@@ -61,7 +62,7 @@ class _CustomWidgetExampleState extends State<CustomWidgetExample> {
             });
           },
         ),
-        MainScreen(
+        SamplePage(
           menuScreenContext: widget.menuScreenContext,
           hideStatus: _hideNavBar,
           onScreenHideButtonPressed: () {
@@ -107,23 +108,15 @@ class _CustomWidgetExampleState extends State<CustomWidgetExample> {
 
   @override
   Widget build(final BuildContext context) => Scaffold(
-        appBar: AppBar(title: const Text("Navigation Bar Demo")),
-        drawer: Drawer(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
-                Text("This is the Drawer"),
-              ],
-            ),
-          ),
-        ),
         body: PersistentTabView.custom(
           context,
           controller: _controller,
+          // ignore: avoid_redundant_argument_values
+          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
           screens: _buildScreens(),
           itemCount: 5,
           hideNavigationBar: _hideNavBar,
+
           screenTransitionAnimation: const ScreenTransitionAnimation(
             animateTabTransition: true,
           ),

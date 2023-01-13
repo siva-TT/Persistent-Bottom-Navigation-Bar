@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_redundant_argument_values
+
 import "package:flutter/material.dart";
 import "package:persistent_bottom_nav_bar/persistent_tab_view.dart";
 
@@ -15,9 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(final BuildContext context) => MaterialApp(
         title: "Persistent Bottom Navigation Bar example project",
         theme: ThemeData(
-          primarySwatch: Colors.blue,
         ),
-        home: const MainMenu(),
+        home: const CustomWidgetExample(),
         initialRoute: "/",
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
@@ -28,49 +29,49 @@ class MyApp extends StatelessWidget {
       );
 }
 
-class MainMenu extends StatefulWidget {
-  const MainMenu({final Key key}) : super(key: key);
+// class MainMenu extends StatefulWidget {
+//   const MainMenu({final Key key}) : super(key: key);
 
-  @override
-  _MainMenuState createState() => _MainMenuState();
-}
+//   @override
+//   _MainMenuState createState() => _MainMenuState();
+// }
 
-class _MainMenuState extends State<MainMenu> {
-  @override
-  Widget build(final BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text("Sample Project"),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              child: ElevatedButton(
-                child: const Text("Custom widget example"),
-                onPressed: () => PersistentNavBarNavigator.pushNewScreen(
-                  context,
-                  screen: CustomWidgetExample(
-                    menuScreenContext: context,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Center(
-              child: ElevatedButton(
-                child: const Text("Built-in styles example"),
-                onPressed: () => PersistentNavBarNavigator.pushNewScreen(
-                  context,
-                  screen: ProvidedStylesExample(
-                    menuScreenContext: context,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-}
+// class _MainMenuState extends State<MainMenu> {
+//   @override
+//   Widget build(final BuildContext context) => Scaffold(
+//         appBar: AppBar(
+//           title: const Text("Sample Project"),
+//         ),
+//         body: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             Center(
+//               child: ElevatedButton(
+//                 child: const Text("Custom widget example"),
+//                 onPressed: () => PersistentNavBarNavigator.pushNewScreen(
+//                   context,
+//                   screen: CustomWidgetExample(
+//                     menuScreenContext: context,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//             const SizedBox(height: 20),
+//             Center(
+//               child: ElevatedButton(
+//                 child: const Text("Built-in styles example"),
+//                 onPressed: () => PersistentNavBarNavigator.pushNewScreen(
+//                   context,
+//                   screen: ProvidedStylesExample(
+//                     menuScreenContext: context,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       );
+// }
 
 // ----------------------------------------- Provided Style ----------------------------------------- //
 
@@ -226,30 +227,30 @@ class _ProvidedStylesExampleState extends State<ProvidedStylesExample> {
               ? 0.0
               : kBottomNavigationBarHeight,
           bottomScreenMargin: 0,
-          onWillPop: (final context) async {
-            await showDialog(
-              context: context,
-              useSafeArea: true,
-              builder: (final context) => Container(
-                height: 50,
-                width: 50,
-                color: Colors.white,
-                child: ElevatedButton(
-                  child: const Text("Close"),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
-            );
-            return false;
-          },
+          // onWillPop: (final context) async {
+          //   await showDialog(
+          //     context: context,
+          //     useSafeArea: true,
+          //     builder: (final context) => Container(
+          //       height: 50,
+          //       width: 50,
+          //       color: Colors.green,
+          //       child: ElevatedButton(
+          //         child: const Text("Close"),
+          //         onPressed: () {
+          //           Navigator.pop(context);
+          //         },
+          //       ),
+          //     ),
+          //   );
+          //   return false;
+          // },
           selectedTabScreenContext: (final context) {
             testContext = context;
           },
-          backgroundColor: Colors.black,
           hideNavigationBar: _hideNavBar,
-          decoration: const NavBarDecoration(colorBehindNavBar: Colors.indigo),
+          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+          decoration: const NavBarDecoration(colorBehindNavBar: Color.fromARGB(255, 255, 255, 255)),
           itemAnimationProperties: const ItemAnimationProperties(
             duration: Duration(milliseconds: 400),
             curve: Curves.ease,
@@ -281,6 +282,7 @@ class CustomNavBarWidget extends StatelessWidget {
       Container(
         alignment: Alignment.center,
         height: kBottomNavigationBarHeight,
+        
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
@@ -318,7 +320,7 @@ class CustomNavBarWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Container(
-        color: Colors.white,
+        color: const Color.fromARGB(255, 0, 0, 0),
         child: SizedBox(
           width: double.infinity,
           height: kBottomNavigationBarHeight,

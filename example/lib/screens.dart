@@ -155,7 +155,10 @@ class MainScreen2 extends StatelessWidget {
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {
-                  PersistentNavBarNavigator.pushNewScreen(context,
+                  PersistentNavBarNavigator.pushNewScreenWithRouteSettings(
+                   context,
+                   withNavBar: true,
+                    settings: const RouteSettings(name: "/html"),
                       screen: const MainScreen3());
                 },
                 child: const Text(
